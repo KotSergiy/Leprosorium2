@@ -12,6 +12,7 @@ class Post < ActiveRecord::Base
 end
 
 class Comment < ActiveRecord::Base
+	validates :content, presence: true, length: {minimum: 5}
 end
 
 get '/' do
@@ -36,6 +37,19 @@ end
 
 get '/details/:id' do
   @post=Post.find params[:id]
-	@comments=Comment.order 'created_at DESC'
+	@comments=Comment.where("post_id=?", params[:id]).order 'created_at DESC'
+	erb :details
+end
+
+post '/details/:id' do
+	@post=Post.find params[:id]
+
+	@new_comment=Comment.new(content: params[:content], post_id: params[:id])
+	if !(@new_comment.save)
+		@error=@new_comment.errors.full_messages.first
+	end
+
+	@comments=Comment.where("post_id=?", params[:id]).order 'created_at DESC'
+
 	erb :details
 end
