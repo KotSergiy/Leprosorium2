@@ -19,6 +19,7 @@ get '/' do
 end
 
 get '/new' do
+	@new_post=Post.new
   erb :new
 end
 

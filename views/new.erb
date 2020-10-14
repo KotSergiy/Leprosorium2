@@ -2,7 +2,7 @@
 
 <p>
   <form action="/new" method="post" role="form">
-    <input type="text" name="post[author]" class="form-control" value="" placeholder="Имя автора">
+    <input type="text" name="post[author]" class="form-control" value="<%=@new_post.author%>" placeholder="Имя автора">
     <br>
     <textarea name="post[content]" class="form-control" rows="6" placeholder="Содержимое текста"></textarea>
     <br>
