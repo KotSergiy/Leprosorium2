@@ -8,7 +8,7 @@ set :database, {adapter: "sqlite3", database: "leprosorium2.db"}
 
 class Post < ActiveRecord::Base
 	validates :author, presence: true
-	validates :content, presence: true
+	validates :content, presence: true, length: {minimum: 5}
 end
 
 class Comment < ActiveRecord::Base
