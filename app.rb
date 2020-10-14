@@ -33,3 +33,9 @@ post '/new' do
 		erb :new
 	end
 end
+
+get '/details/:id' do
+  @post=Post.find params[:id]
+	@comments=Comment.order 'created_at DESC'
+	erb :details
+end
