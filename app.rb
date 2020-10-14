@@ -15,6 +15,7 @@ class Comment < ActiveRecord::Base
 end
 
 get '/' do
+	@posts=Post.order 'created_at DESC'
 	erb :main
 end
 
